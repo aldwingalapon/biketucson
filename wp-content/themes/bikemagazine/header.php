@@ -64,5 +64,23 @@
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
 </head>
 <body <?php id_the_body(); ?><?php class_the_body(); ?>>
+	<script>
+	  window.fbAsyncInit = function() {
+		FB.init({
+		  appId      : '141582589735908',
+		  xfbml      : true,
+		  version    : 'v2.9'
+		});
+		FB.AppEvents.logPageView();
+	  };
+
+	  (function(d, s, id){
+		 var js, fjs = d.getElementsByTagName(s)[0];
+		 if (d.getElementById(id)) {return;}
+		 js = d.createElement(s); js.id = id;
+		 js.src = "//connect.facebook.net/en_US/sdk.js";
+		 fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+	</script>
 	<header id="main-header">
 	</header>

@@ -1,0 +1,84 @@
+@media only screen and (max-width:7680px){
+
+	#main-footer .newsletter .content{display: table; margin:0; padding: 1.75rem 1.5rem 1.75rem 1rem;}
+	#main-footer .newsletter .content .newsletter-caption{display: table-cell; width: 40%;vertical-align: middle;}
+	#main-footer .newsletter .content .newsletter-caption h2{margin-bottom: 0;}
+	#main-footer .newsletter .content .newsletter-caption p{margin-bottom: 0;}
+	#main-footer .newsletter .content .newsletter-form{display: table-cell; padding-left: 1rem;vertical-align: middle;}
+	#main-footer .newsletter .content .newsletter-form .gform_wrapper form input[type='email'], footer#main-footer .newsletter .content .newsletter-form .gform_wrapper form input[type='text']{padding:1rem 11rem 1rem 1.5rem !important;}
+
+	#main-footer .search-footer p.chat-and-ask{margin:0;padding:0 0 1.5rem 0;}
+	#main-footer .search-footer p.chat-and-ask .schedule{margin:0.5rem 0;}
+
+	#main-footer #top-footer{margin:0;padding:4rem 0 2rem;}
+	#main-footer .copyright {padding: 1.25rem 0;}
+	#main-footer .copyright ul.menu{text-align:right;}
+}
+@media only screen and (max-width:1920px){
+
+}
+@media only screen and (max-width:1768px){
+
+}
+@media only screen and (max-width:1680px){
+
+}
+
+@media only screen and (max-width:1600px){
+
+}
+@media only screen and (max-width:1440px){
+
+}
+@media only screen and (max-width:1366px){
+
+}
+@media only screen and (max-width:1280px){
+
+}
+@media only screen and (max-width:1024px){
+
+}
+@media only screen and (max-width:1023px){
+	#main-footer .newsletter .content{display: block; margin:0; padding: 1.75rem 1.5rem 1.75rem 1rem;}
+	#main-footer .newsletter .content .newsletter-caption{display: block;width:100%;}
+	#main-footer .newsletter .content .newsletter-caption h2{margin-bottom: 0.25rem;}
+	#main-footer .newsletter .content .newsletter-caption p{margin-bottom: 0.75rem;}
+	#main-footer .newsletter .content .newsletter-form{display: block; width: 100%; min-height: 60px; padding-left: 0;}
+
+	#main-footer .bottom-footer .footer-copyright, #main-footer .copyright ul.menu{text-align: center; margin-bottom: 0.5rem;}
+}
+@media only screen and (max-width: 960px){
+}
+@media only screen and (max-width:768px){
+
+}
+@media only screen and (max-width:640px){
+
+}
+@media only screen and (max-width:603px){
+	#main-footer .newsletter .content .newsletter-form .gform_wrapper form input[type='email'], footer#main-footer .newsletter .content .newsletter-form .gform_wrapper form input[type='text']{padding:1rem 1.5rem !important;}
+	#main-footer .newsletter .content .newsletter-form .gform_wrapper form .gform_footer button{display:none !important;}
+
+}
+@media only screen and (max-width:600px){
+
+}
+@media only screen and (max-width:533px){
+
+}	
+@media only screen and (max-width:532px){
+
+}
+@media only screen and (max-width:375px){
+
+}
+@media only screen and (max-width:360px){
+
+}
+@media only screen and (max-width:320px){
+
+}
+@media only screen and (max-width:240px){
+	
+}

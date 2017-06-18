@@ -32,7 +32,7 @@ add_action('wp_head', 'fb_opengraph', 5);
 
 /*	@desc attach custom admin login CSS file	*/
 function custom_login_css() {
-  echo '<link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri().'/login.css" />';
+  echo '<link rel="stylesheet" type="text/css" href="'.get_template_directory_uri().'/login.css" />';
 }
 add_action('login_head', 'custom_login_css');
 
@@ -50,7 +50,7 @@ function custom_login_header_title($title) {
 add_filter( 'login_headertitle', 'custom_login_header_title' );
 /*	@desc update admin icon to client icon	*/
 function custom_admin_icon_css() {
-  echo '<link rel="shortcut icon" href="'.get_stylesheet_directory_uri().'/images/logo.ico" />';
+  echo '<link rel="shortcut icon" href="'.get_template_directory_uri().'/images/logo.ico" />';
 }
 add_action('admin_head', 'custom_admin_icon_css');
 
@@ -204,6 +204,19 @@ function limit_words($string, $word_limit) {
 	$words = explode(' ', $string);
 
 	return implode(' ', array_slice($words, 0, $word_limit));
+}
+
+add_filter( 'gform_validation_message', 'change_message', 10, 2 );
+function change_message( $message, $form ) {
+	return "";
+}
+
+add_filter( 'gform_tabindex', 'gform_tabindexer', 10, 2 );
+function gform_tabindexer( $tab_index, $form = false ) {
+    $starting_index = 1000; // if you need a higher tabindex, update this number
+    if( $form )
+        add_filter( 'gform_tabindex_' . $form['id'], 'gform_tabindexer' );
+    return GFCommon::$tab_index >= $starting_index ? GFCommon::$tab_index : $starting_index;
 }
 
 add_filter( 'gform_next_button', 'input_to_button', 10, 2 );
@@ -853,5 +866,90 @@ function custom_taxonomy_flush_rewrite() {
     global $wp_rewrite;
     $wp_rewrite->flush_rules();
 }
+
+// Bike Magazine Custom Widgets
+class bikemagazine_social_media_widget extends WP_Widget {
+	public function __construct() {
+		$widget_ops = array(
+			'classname' => 'bikemagazine_social_media_widget',
+			'description' => 'Custom widget for social network icon links.'
+		);
+
+		parent::__construct( 'bikemagazine_social_media_widget', 'Bike Magazine Social Network Icon Links Widget', $widget_ops );
+	}
+
+	function form($instance) {
+		$title   = esc_attr( isset( $instance['title'] ) ? $instance['title'] : '' );
+
+?>
+		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?><input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></label></p>
+<?php
+	}
+
+	function update($new_instance, $old_instance) {
+		$instance = $old_instance;
+		// Fields
+		$instance['title'] = strip_tags($new_instance['title']);
+
+		return $instance;
+	}
+
+	function widget($args, $instance) {
+		extract( $args );
+
+		$title = apply_filters('widget_title', $instance['title']);
+
+		echo $before_widget;
+		echo '<div class="socialnetworkiconwidget">';
+		
+		if($title){
+			echo $before_title . $title . $after_title;
+		}
+
+		?>
+
+			<div class="social-network">
+
+				<?php
+
+					if( have_rows('social_network', 'option' ) ): ?>
+
+						<ul class="footer_sn">
+
+							<?php
+
+								while ( have_rows('social_network', 'option' ) ) : the_row();
+
+									$sn_name = get_sub_field('sn_name');
+
+									$sn_type = get_sub_field('sn_type');
+
+									$sn_url = get_sub_field('sn_url');
+
+							?>
+
+								<li class="<?php echo $sn_type; ?>"><a href="<?php echo $sn_url ?>" title="<?php echo $sn_name ?>" rel="nofollow" target="_blank"><i class="fa <?php echo str_replace('sn_','fa-', $sn_type); ?>"></i></a></li>
+
+							<?php endwhile; ?>
+
+						</ul>
+
+				<?php
+
+					endif;
+
+				?>
+			</div>
+		<?php
+		
+		echo '</div>';
+		echo $after_widget;
+	}
+}
+
+function load_bikemagazine_widgets(){
+	register_widget("bikemagazine_social_media_widget");
+}
+add_action( 'widgets_init', 'load_bikemagazine_widgets' );
 
 ?>
