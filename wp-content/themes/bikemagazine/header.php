@@ -82,5 +82,50 @@
 		 fjs.parentNode.insertBefore(js, fjs);
 	   }(document, 'script', 'facebook-jssdk'));
 	</script>
+	<?php
+		$header_logo = get_field('header_logo', 'option');
+		$logo_height = get_field('logo_height', 'option');
+		$logo_position = get_field('logo_position', 'option');
+		$header_ad_script = get_field('header_ad_script', 'option');
+	?>
 	<header id="main-header">
+		<div id="main-header-content">
+			<div id="top-header">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+						</div>
+						<div class="col-md-6">
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div id="main-navigation">
+				<div class="container">
+					<div class="row">
+						<?php if(($logo_position)=='Left'){?>
+							<div class="col-md-3 logo-left">
+								<h1 class="logo"><a href="<?php echo get_settings('home'); ?>" title="<?php bloginfo('name'); ?>" class=""><img src="<?php echo ($header_logo ? $header_logo : get_template_directory_uri() . '/images/logo.png'); ?>" alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>" <?php echo ($logo_height ? ' style="' . 'height:' . $logo_height . 'px; width:auto;"' : ''); ?> /></a></h1>
+							</div>
+							<div class="col-md-9 ad-right">
+								<?php echo $header_ad_script; ?>
+							</div>
+						<?php } elseif(($logo_position)=='Center'){?>
+						<?php } elseif(($logo_position)=='Right'){?>
+							<div class="col-md-9 ad-left">
+								<?php echo $header_ad_script; ?>
+							</div>
+							<div class="col-md-3 logo-right">
+								<h1 class="logo"><a href="<?php echo get_settings('home'); ?>" title="<?php bloginfo('name'); ?>" class=""><img src="<?php echo ($header_logo ? $header_logo : get_template_directory_uri() . '/images/logo.png'); ?>" alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>" <?php echo ($logo_height ? ' style="' . 'height:' . $logo_height . 'px; width:auto;"' : ''); ?> /></a></h1>
+							</div>
+						<?php } ?>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
 	</header>

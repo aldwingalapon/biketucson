@@ -49,6 +49,17 @@ em{font-family: 'ProximaNova-RegularItalic';}
 .video-container iframe, .video-container object, .video-container embed, .video-container .wp-video, .video-container .wp-video-shortcode {position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important;}
 
 /*----------------------------------------------*/
+/* Header */
+/*----------------------------------------------*/
+#main-header{}
+#main-header #main-header-content{margin:0; padding: 1rem 0 2rem;}
+#main-header #main-header-content .logo-left{}
+#main-header #main-header-content .ad-right{text-align:right;}
+#main-header #main-header-content .logo-right{text-align:right;}
+#main-header #main-header-content .ad-left{}
+
+
+/*----------------------------------------------*/
 /* Forms */
 /*----------------------------------------------*/
 #main-content .article > .gform_wrapper{padding: 1rem 2rem;border:2px solid #F1F1F1;border-radius: 0.25rem;}
