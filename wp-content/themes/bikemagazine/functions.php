@@ -84,6 +84,8 @@ register_sidebar(array('id'=>'default-sidebar','name'=>'Default Sidebar','before
 register_sidebar(array('id'=>'default-events-sidebar','name'=>'Default Events Sidebar','before_widget' => '<span id="%1$s" class="widget %2$s">','after_widget' => '</span>','before_title' => '<h2 class="widgettitle">','after_title' => '</h2>',));
 register_sidebar(array('id'=>'default-blog-sidebar','name'=>'Default Blog Sidebar','before_widget' => '<span id="%1$s" class="widget %2$s">','after_widget' => '</span>','before_title' => '<h2 class="widgettitle">','after_title' => '</h2>',));
 register_sidebar(array('id'=>'default-route-sidebar','name'=>'Default Route Sidebar','before_widget' => '<span id="%1$s" class="widget %2$s">','after_widget' => '</span>','before_title' => '<h2 class="widgettitle">','after_title' => '</h2>',));
+register_sidebar(array('id'=>'default-bottom-left-ad','name'=>'Default Bottom Left Ad','before_widget' => '','after_widget' => '','before_title' => '','after_title' => '',));
+register_sidebar(array('id'=>'default-bottom-right-ad','name'=>'Default Bottom Right Ad','before_widget' => '','after_widget' => '','before_title' => '','after_title' => '',));
 register_sidebar(array('id'=>'home-top-footer-one','name'=>'Home Top Footer One','before_widget' => '','after_widget' => '','before_title' => '<h4>','after_title' => '</h4>',));
 register_sidebar(array('id'=>'home-top-footer-two','name'=>'Home Top Footer Two','before_widget' => '','after_widget' => '','before_title' => '<h4>','after_title' => '</h4>',));
 register_sidebar(array('id'=>'home-top-footer-three','name'=>'Home Top Footer Three','before_widget' => '','after_widget' => '','before_title' => '<h4>','after_title' => '</h4>',));
@@ -623,6 +625,36 @@ function cptui_register_my_cpts_testimonial() {
 
 // End of cptui_register_my_cpts_testimonial()
 }
+add_action( 'init', 'cptui_register_my_cpts_feature' );
+function cptui_register_my_cpts_feature() {
+	$labels = array(
+		"name" => __( 'Features', 'bikemagazine' ),
+		"singular_name" => __( 'Feature', 'bikemagazine' ),
+		);
+
+	$args = array(
+		"label" => __( 'Features', 'bikemagazine' ),
+		"labels" => $labels,
+		"description" => "",
+		"public" => true,
+		"publicly_queryable" => false,
+		"show_ui" => true,
+		"show_in_rest" => false,
+		"rest_base" => "",
+		"has_archive" => false,
+		"show_in_menu" => true,
+				"exclude_from_search" => true,
+		"capability_type" => "post",
+		"map_meta_cap" => true,
+		"hierarchical" => false,
+		"rewrite" => array( "slug" => "feature", "with_front" => true ),
+		"query_var" => true,
+		"menu_position" => 5,"menu_icon" => "dashicons-star-filled",
+		"supports" => array( "title", "editor", "thumbnail", "page-attributes" ),					);
+	register_post_type( "feature", $args );
+
+// End of cptui_register_my_cpts_feature()
+}
 add_filter( 'manage_edit-slider_columns', 'upcmc_edit_slider_columns' ) ;
 function upcmc_edit_slider_columns( $columns ) {
 	$columns = array(
@@ -909,35 +941,20 @@ class bikemagazine_social_media_widget extends WP_Widget {
 		?>
 
 			<div class="social-network">
-
 				<?php
-
 					if( have_rows('social_network', 'option' ) ): ?>
-
 						<ul class="footer_sn">
-
 							<?php
-
 								while ( have_rows('social_network', 'option' ) ) : the_row();
-
 									$sn_name = get_sub_field('sn_name');
-
 									$sn_type = get_sub_field('sn_type');
-
 									$sn_url = get_sub_field('sn_url');
-
 							?>
-
 								<li class="<?php echo $sn_type; ?>"><a href="<?php echo $sn_url ?>" title="<?php echo $sn_name ?>" rel="nofollow" target="_blank"><i class="fa <?php echo str_replace('sn_','fa-', $sn_type); ?>"></i></a></li>
-
 							<?php endwhile; ?>
-
 						</ul>
-
 				<?php
-
 					endif;
-
 				?>
 			</div>
 		<?php

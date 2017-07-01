@@ -34,6 +34,8 @@
 	<link rel="stylesheet" media="all" href="<?php echo get_template_directory_uri(); ?>/css/lightbox.css" />
 	<link rel="stylesheet" media="all" href="<?php echo get_template_directory_uri(); ?>/css/modal.css" />
 
+	<link rel="stylesheet" media="all" href="<?php echo get_template_directory_uri(); ?>/fonts/bentonsans.css" />
+
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/layout.css" />
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
 	<link rel="alternate" type="application/atom+xml" title="<?php bloginfo('name'); ?> Atom Feed" href="<?php bloginfo('atom_url'); ?>" />
@@ -87,6 +89,7 @@
 		$logo_height = get_field('logo_height', 'option');
 		$logo_position = get_field('logo_position', 'option');
 		$header_ad_script = get_field('header_ad_script', 'option');
+		$show_social_network_icons_below_header_ad = get_field('show_social_network_icons_below_header_ad', 'option');
 	?>
 	<header id="main-header">
 		<div id="main-header-content">
@@ -112,11 +115,72 @@
 							</div>
 							<div class="col-md-9 ad-right">
 								<?php echo $header_ad_script; ?>
+								<?php if($show_social_network_icons_below_header_ad) { ?>
+									<div class="header-social-network">
+										<?php
+											if( have_rows('social_network', 'option' ) ): ?>
+												<ul class="header_sn">
+													<?php
+														while ( have_rows('social_network', 'option' ) ) : the_row();
+															$sn_name = get_sub_field('sn_name');
+															$sn_type = get_sub_field('sn_type');
+															$sn_url = get_sub_field('sn_url');
+													?>
+														<li class="<?php echo $sn_type; ?>"><a href="<?php echo $sn_url ?>" title="<?php echo $sn_name ?>" rel="nofollow" target="_blank"><i class="fa <?php echo str_replace('sn_','fa-', $sn_type); ?>"></i></a></li>
+													<?php endwhile; ?>
+												</ul>
+										<?php
+											endif;
+										?>
+									</div>								
+								<?php } ?>
 							</div>
 						<?php } elseif(($logo_position)=='Center'){?>
+							<div class="col-md-9 logo-center ad-center">
+								<h1 class="logo"><a href="<?php echo get_settings('home'); ?>" title="<?php bloginfo('name'); ?>" class=""><img src="<?php echo ($header_logo ? $header_logo : get_template_directory_uri() . '/images/logo.png'); ?>" alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>" <?php echo ($logo_height ? ' style="' . 'height:' . $logo_height . 'px; width:auto;"' : ''); ?> /></a></h1>
+								<?php echo $header_ad_script; ?>
+								<?php if($show_social_network_icons_below_header_ad) { ?>
+									<div class="header-social-network">
+										<?php
+											if( have_rows('social_network', 'option' ) ): ?>
+												<ul class="header_sn">
+													<?php
+														while ( have_rows('social_network', 'option' ) ) : the_row();
+															$sn_name = get_sub_field('sn_name');
+															$sn_type = get_sub_field('sn_type');
+															$sn_url = get_sub_field('sn_url');
+													?>
+														<li class="<?php echo $sn_type; ?>"><a href="<?php echo $sn_url ?>" title="<?php echo $sn_name ?>" rel="nofollow" target="_blank"><i class="fa <?php echo str_replace('sn_','fa-', $sn_type); ?>"></i></a></li>
+													<?php endwhile; ?>
+												</ul>
+										<?php
+											endif;
+										?>
+									</div>								
+								<?php } ?>
+							</div>
 						<?php } elseif(($logo_position)=='Right'){?>
 							<div class="col-md-9 ad-left">
 								<?php echo $header_ad_script; ?>
+								<?php if($show_social_network_icons_below_header_ad) { ?>
+									<div class="header-social-network">
+										<?php
+											if( have_rows('social_network', 'option' ) ): ?>
+												<ul class="header_sn">
+													<?php
+														while ( have_rows('social_network', 'option' ) ) : the_row();
+															$sn_name = get_sub_field('sn_name');
+															$sn_type = get_sub_field('sn_type');
+															$sn_url = get_sub_field('sn_url');
+													?>
+														<li class="<?php echo $sn_type; ?>"><a href="<?php echo $sn_url ?>" title="<?php echo $sn_name ?>" rel="nofollow" target="_blank"><i class="fa <?php echo str_replace('sn_','fa-', $sn_type); ?>"></i></a></li>
+													<?php endwhile; ?>
+												</ul>
+										<?php
+											endif;
+										?>
+									</div>								
+								<?php } ?>
 							</div>
 							<div class="col-md-3 logo-right">
 								<h1 class="logo"><a href="<?php echo get_settings('home'); ?>" title="<?php bloginfo('name'); ?>" class=""><img src="<?php echo ($header_logo ? $header_logo : get_template_directory_uri() . '/images/logo.png'); ?>" alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>" <?php echo ($logo_height ? ' style="' . 'height:' . $logo_height . 'px; width:auto;"' : ''); ?> /></a></h1>
