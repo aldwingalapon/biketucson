@@ -180,6 +180,10 @@
 			$section_content_type = get_sub_field('section_content_type');
 			$section_content_post_type = get_sub_field('section_content_post_type');
 			$section_content_post_count = get_sub_field('section_content_post_count');
+<<<<<<< HEAD
+			$section_content_post_ids = get_sub_field('section_content_post_ids'); 
+=======
+>>>>>>> ed0b252e2ad5678f194cc1b78d439162f0e6ad83
 			$section_content_post_order_by = get_sub_field('section_content_post_order_by');
 			$section_content_post_order = get_sub_field('section_content_post_order');
 			$show_section_content_post_thumbnail = get_sub_field('show_section_content_post_thumbnail');
@@ -187,6 +191,12 @@
 			$show_section_content_post_title = get_sub_field('show_section_content_post_title');
 			$section_content_post_title_position = get_sub_field('section_content_post_title_position');
 			$show_section_content_post_excerpt = get_sub_field('show_section_content_post_excerpt');
+<<<<<<< HEAD
+			$show_section_content_post_read_more = get_sub_field('show_section_content_post_read_more');
+			$post_read_more_text = get_sub_field('post_read_more_text');
+			$post_read_more_button_type = get_sub_field('post_read_more_button_type');
+=======
+>>>>>>> ed0b252e2ad5678f194cc1b78d439162f0e6ad83
 
 			$section_content_column_count = get_sub_field('section_content_column_count');
 			
@@ -291,6 +301,27 @@
 										$col_class = 'col-md-3';
 									}
 									
+<<<<<<< HEAD
+									if($section_content_post_ids){
+										$myarray = explode(",", $section_content_post_ids);
+										$args = array(
+											'post__in' =>	$myarray,
+											'post_type' =>	$section_content_post_type,
+											'status'	=>	'publish',
+											'orderby'	=>	$section_content_post_order_by,
+											'order'	=>	$section_content_post_order
+										);
+									} else {
+										$args = array(
+											'posts_per_page' => $section_content_post_count,
+											'post_type' =>	$section_content_post_type,
+											'status'	=>	'publish',
+											'orderby'	=>	$section_content_post_order_by,
+											'order'	=>	$section_content_post_order
+										);
+									}
+									//var_dump($args);
+=======
 									$args = array(
 										'posts_per_page' => $section_content_post_count,
 										'post_type' =>	$section_content_post_type,
@@ -299,6 +330,7 @@
 										'order'	=>	$section_content_post_order
 									);
 
+>>>>>>> ed0b252e2ad5678f194cc1b78d439162f0e6ad83
 									$query_item = New WP_Query($args);
 								?>
 								<?php if ($query_item) : $i = 1; ?>
@@ -306,14 +338,26 @@
 										$query_item_id = get_the_ID();
 										$query_item_icon = '';
 										if ( has_post_thumbnail() ) {
+<<<<<<< HEAD
+											if($section_content_post_thumbnail_style=='oval'){
+												$image_url = wp_get_attachment_image_src( get_post_thumbnail_id($query_item_id), 'full' );
+											}else{
+												$image_url = wp_get_attachment_image_src( get_post_thumbnail_id($query_item_id), 'feature-thumbnails' );
+											}
+=======
 											$image_url = wp_get_attachment_image_src( get_post_thumbnail_id($query_item_id), 'full' );
+>>>>>>> ed0b252e2ad5678f194cc1b78d439162f0e6ad83
 											$query_item_icon = $image_url[0];
 										}
 									?>
 										<div class="query">
 											<div class="<?php echo $col_class; ?>">
 												<div class="inner-content">
+<<<<<<< HEAD
+													<?php if(($section_content_post_title_position) == 'Above the Image') {?>
+=======
 													<?php if(($section_content_post_title_position) == ' Above the Image') {?>
+>>>>>>> ed0b252e2ad5678f194cc1b78d439162f0e6ad83
 														<h3 class="query-title"><a href="<?php echo get_permalink($query_item_id ); ?>" title="<?php echo get_the_title($query_item_id ); ?>"><?php echo get_the_title($query_item_id ); ?></a></h3>
 													<?php } ?>
 													<?php if(($show_section_content_post_thumbnail) && ($query_item_icon != '')) { ?>
@@ -322,6 +366,19 @@
 													<?php if(($section_content_post_title_position) == 'Below the Image') {?>
 														<h3 class="query-title"><a href="<?php echo get_permalink($query_item_id ); ?>" title="<?php echo get_the_title($query_item_id ); ?>"><?php echo get_the_title($query_item_id ); ?></a></h3>
 													<?php } ?>
+<<<<<<< HEAD
+													<?php if($show_section_content_post_excerpt) {?>
+														<div class="post-excerpt">
+															<?php the_excerpt(); ?>
+														</div>
+													<?php } ?>
+													<?php if($show_section_content_post_read_more) {?>
+														<div class="read-more-button">
+															<?php echo (($post_read_more_text) ? '<a href="' . get_permalink($query_item_id ) . '" title="' . get_the_title($query_item_id ) . '" class="btn ' . $post_read_more_button_type . '">' . $post_read_more_text . '</a>' : ''); ?>
+														</div>
+													<?php } ?>
+=======
+>>>>>>> ed0b252e2ad5678f194cc1b78d439162f0e6ad83
 												</div>
 											</div>
 											<?php if(($i % $col_count) == 0){ ?>
