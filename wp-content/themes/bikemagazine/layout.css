@@ -1,9 +1,5 @@
 @media only screen and (max-width:7680px){
-<<<<<<< HEAD
 	#main-content.homepage .hero-banner .hero-caption{width: 80%; margin:0; padding: 2rem;}
-=======
-	#main-content.homepage .hero-banner .hero-caption{width: 40%; margin:0; padding: 2rem;}
->>>>>>> ed0b252e2ad5678f194cc1b78d439162f0e6ad83
 	.owl-carousel .owl-item{max-height:560px;}
 
 	#main-footer .newsletter .content{display: table; margin:0; padding: 1.75rem 1.5rem 1.75rem 1rem;}

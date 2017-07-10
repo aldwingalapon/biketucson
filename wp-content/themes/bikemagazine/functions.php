@@ -651,11 +651,7 @@ function cptui_register_my_cpts_feature() {
 		"rewrite" => array( "slug" => "feature", "with_front" => true ),
 		"query_var" => true,
 		"menu_position" => 5,"menu_icon" => "dashicons-star-filled",
-<<<<<<< HEAD
 		"supports" => array( "title", "editor", "excerpt", "thumbnail", "page-attributes" ),					);
-=======
-		"supports" => array( "title", "editor", "thumbnail", "page-attributes" ),					);
->>>>>>> ed0b252e2ad5678f194cc1b78d439162f0e6ad83
 	register_post_type( "feature", $args );
 
 // End of cptui_register_my_cpts_feature()
